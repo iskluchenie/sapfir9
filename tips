@@ -1,0 +1,7 @@
+#Stop all containers
+docker stop $(docker ps -aq)
+
+#Remove all docker data
+docker container prune
+docker image prune -a
+docker volume prune
