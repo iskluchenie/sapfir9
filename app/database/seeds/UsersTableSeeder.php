@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        \DB::table('users')->insert([
+        DB::table('users')->insert([
             'name' => 'zloyleva',
             'first_name' => 'Oleh',
             'last_name' => 'Lev',
@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
-        for($i = 0; $i<100; $i++){
+        for($i = 0; $i<10; $i++){
             DB::table('users')->insert([
                 'name' => $faker->name,
                 'first_name' => $faker->firstName,
