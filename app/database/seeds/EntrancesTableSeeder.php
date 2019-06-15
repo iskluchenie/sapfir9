@@ -1,6 +1,5 @@
 <?php
 
-//require_once __DIR__."/LKD_export_zp.csv";
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;

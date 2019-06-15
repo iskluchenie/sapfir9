@@ -11,11 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('pages.home');
-})->name('home');
 
-Route::group(['prefix' => 'users', 'as' => 'users.'],function(){
-    Route::get('/', 'UsersController@index')->name('index');
-    Route::get('/{user}', 'UsersController@show')->name('show')->where('user', '\d+');
-});
+Route::get('/', function () {
+    return view('welcome');
+})->name('welcome');
+
+Route::resource('/entrances', 'EntranceController');
+
+Route::resource('/towns', 'TownController');
+
+Route::resource('/streets', 'StreetController');
+
+Route::resource('/houses', 'HouseController');
