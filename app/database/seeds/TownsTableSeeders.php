@@ -13,11 +13,12 @@ class TownsTableSeeders extends Seeder
      */
     public function run()
     {
-
         $data = $this->getCSV(__DIR__."/LKD_export_zp.csv", 17);
 
-        foreach ($data as $row) {
-            Town::firstOrCreate(['name' => $row['Город ЛКД']]);
+        foreach ($data as $row)
+        {
+            $cut_town = rtrim(substr($row['Город ЛКД'], 0, strpos($row['Город ЛКД'], "м.")));
+            Town::firstOrCreate(['name' => $cut_town]);
         }
     }
 
