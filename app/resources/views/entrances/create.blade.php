@@ -9,7 +9,7 @@
         </div>
         <form class="col-12 my-2" method="post" action="{{ route('products.store') }}">
 
-            @csrf
+
 
             <div class="form-group">
                 <label for="name">Name</label>

@@ -1,7 +1,8 @@
 <?php
 
+use App\Models\Town;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+
 
 class TownsTableSeeders extends Seeder
 {
@@ -16,34 +17,7 @@ class TownsTableSeeders extends Seeder
         $data = $this->getCSV(__DIR__."/LKD_export_zp.csv", 17);
 
         foreach ($data as $row) {
-
-            $db_row = DB::table('towns')->where('name', '=', $row['Город ЛКД'])->get();
-
-            if $db_row[]
-            if ($row['СТАТУС ЛКД'] === 'эксплуатация') {
-                $status = 'maintenance';
-            } else {
-                $status = 'none';
-            }
-
-            $floors = 0;
-            if ($row['Количество этажей ЛКД']<> '') {
-                $floors = $row['Количество этажей ЛКД'];
-            }
-
-            $number = 0;
-            if ($row['Подъезд(ЛКД)'] <> '') {
-                $number = $row['Подъезд(ЛКД)'];
-            }
-
-            DB::table('entrances')->insert([
-                'id' => $row['ID Дома'],
-                'name' => $row['Дом ЛКД'],
-                'street_id' => ,
-                'town_id' => ,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+            Town::firstOrCreate(['name' => $row['Город ЛКД']]);
         }
     }
 

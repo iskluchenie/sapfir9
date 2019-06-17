@@ -8,28 +8,34 @@
             <a href="{{ route('entrances.create') }}" class="btn btn-success">Create</a>
         </div>
 
-        @foreach($entrances as $entrance)
-            <div class="col-6 my-2">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $entrance->number }}</h5>
-                        <p class="card-text">
-                            {{ $entrance->floors_numb }}
-                        </p>
-                        <div class="d-flex justify-content-end">
-                            <a href="{{ route('entrances.show',['id' => $entrance->id]) }}" class="btn btn-primary mr-2">Show more</a>
-                            <a href="{{ route('entrances.edit',['id' => $entrance->id]) }}" class="btn btn-warning mr-2">Edit</a>
-                            <form action="{{ route('entrances.destroy', ['id' => $entrance->id]) }}" method="post">
-                                <input type="hidden" name="_method" value="DELETE">
-                                @csrf
-                                <button class="btn btn-danger">Delete</button>
-                            </form>
-                        </div>
-                        </div>
-                </div>
-            </div>
-        @endforeach
+        <table class="table table-striped table-hover table-sm">
+            <thead>
+            <tr class="table-warning">
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Floors</th>
+                <th scope="col">Create</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($entrances as $entrance)
+                <tr>
+                    <th scope="row">{{ $loop->index +1 }}</th>
+                    <td>{{ $entrance->id }}</td>
+                    <td>{{ $entrance->number }}</td>
+                    <td>{{ $entrance->floors_numb }}</td>
+                    <td>{{ $entrance->created_at }}</td>
+                    <td>
+                        <a href="{{ route('entrances.show', ['entrance' => $entrance->id]) }}">More</a>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
 
     </div>
+
 
 @endsection

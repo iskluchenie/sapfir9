@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Entrance extends Model
 {
-    //
+    protected $guarded = [];
 }

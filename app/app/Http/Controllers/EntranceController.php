@@ -45,8 +45,9 @@ class EntranceController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Entrance $entrance): View
+
     {
-        return view('entrances.show', ['entrance' => Entrance::findOrFail($entrance)]);
+        return view('entrances.show', ['entrance' => $entrance]);
     }
 
 
@@ -56,7 +57,7 @@ class EntranceController extends Controller
      */
     public function edit(Entrance $entrance): View
     {
-        return view('entrances.edit', ['entrance' => Entrance::findOrFail($entrance)]);
+        return view('entrances.edit', ['entrance' => $entrance]);
     }
 
 
