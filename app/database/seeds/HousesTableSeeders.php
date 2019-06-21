@@ -1,7 +1,10 @@
 <?php
 
+use App\Models\Street;
+use App\Models\House;
+use App\Models\Town;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+
 
 class HousesTableSeeders extends Seeder
 {
@@ -12,35 +15,17 @@ class HousesTableSeeders extends Seeder
      */
     public function run()
     {
-
         $data = $this->getCSV(__DIR__."/LKD_export_zp.csv", 17);
 
-        foreach ($data as $row) {
-
-            if ($row['СТАТУС ЛКД'] === 'эксплуатация') {
-                $status = 'maintenance';
-            } else {
-                $status = 'none';
-            }
-
-            $floors = 0;
-            if ($row['Количество этажей ЛКД']<> '') {
-                $floors = $row['Количество этажей ЛКД'];
-            }
-
-            $number = 0;
-            if ($row['Подъезд(ЛКД)'] <> '') {
-                $number = $row['Подъезд(ЛКД)'];
-            }
-
-            DB::table('entrances')->insert([
-                'id' => $row['ID Дома'],
-                'name' => $row['Дом ЛКД'],
-                'street_id' => ,
-                'town_id' => ,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+        foreach ($data as $row)
+        {
+            $cut_town = rtrim(substr($row['Город ЛКД'], 0, strpos($row['Город ЛКД'], "м.")));
+            $tn_id = Town::where('name', '=', $cut_town)->firstOrFail()->id;
+            $str_id = Street::where('name', '=', $row['Улица ЛКД'])->where('town_id', '=', $tn_id)->firstOrFail()->id;
+            $house = House::firstOrNew(['id' => $row['ID Дома']]);
+            $house->name = $row['Дом ЛКД'];
+            $house->street_id = $str_id;
+            $house->save();
         }
     }
 

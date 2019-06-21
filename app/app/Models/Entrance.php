@@ -7,4 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Entrance extends Model
 {
     protected $guarded = [];
+
+    public function house()
+    {
+        return $this->belongsTo('App\Models\House');
+    }
 }

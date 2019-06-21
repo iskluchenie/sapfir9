@@ -17,7 +17,6 @@ class CreateHousesTable extends Migration
             $table->unsignedInteger('id');
             $table->string('name', 7);
             $table->unsignedInteger('street_id');
-            $table->unsignedInteger('town_id');
             $table->timestamps();
         });
     }
