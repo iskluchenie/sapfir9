@@ -15,7 +15,7 @@ class EntranceController extends Controller
      */
     public function index(): View
     {
-        return view('entrances.index', ['entrances' => Entrance::all()]);
+        return view('entrances.index', ['entrances' => Entrance::paginate(30)]);
     }
 
 

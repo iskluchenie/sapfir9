@@ -8,6 +8,10 @@ class Entrance extends Model
 {
     protected $guarded = [];
 
+    protected $with = [
+        'house'
+    ];
+
     public function house()
     {
         return $this->belongsTo('App\Models\House');

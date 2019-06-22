@@ -8,6 +8,10 @@ class House extends Model
 {
     protected $guarded = [];
 
+    protected $with = [
+        'street'
+    ];
+
     public function entrance()
     {
         return $this->hasMany('App\Models\Entrance');
