@@ -8,6 +8,8 @@
             <a href="{{ route('entrances.create') }}" class="btn btn-success">Create</a>
         </div>
 
+        {{ $entrances->links() }}
+
         <table class="table table-striped table-hover table-sm">
             <thead>
             <tr class="table-warning">
@@ -23,11 +25,9 @@
             </thead>
             <tbody>
 
-                {{  var_dump($entrances) }}
-
             @foreach($entrances->getCollection() as $entrance)
                 <tr>
-                    <th scope="row">{{ $loop->index +1 }}</th>
+                    <th scope="row">{{  $entrances->perPage() * ($entrances->currentPage()-1) + $loop->index +1 }}</th>
                     <td>{{ $entrance['id'] }}</td>
                     <td>{{ $entrance['number'] }}</td>
                     <td>{{ $entrance['house']['street']['name'] }}</td>
