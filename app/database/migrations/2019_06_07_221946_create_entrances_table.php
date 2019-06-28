@@ -16,7 +16,7 @@ class CreateEntrancesTable extends Migration
         Schema::create('entrances', function (Blueprint $table) {
             $table->unsignedInteger('id');
             $table->unsignedTinyInteger('number');
-            $table->unsignedInteger('house_id');
+            $table->unsignedInteger('houmake se_id');
             $table->unsignedTinyInteger('floors_numb');
             $table->string('roof_exit', 40)->nullable();
             $table->enum('lkd_status', ['none', 'maintenance',  'require_recovery', 'scheduled', 'install_is_pos', 'status1', 'status2']);

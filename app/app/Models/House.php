@@ -8,18 +8,15 @@ class House extends Model
 {
     protected $guarded = [];
 
-    protected $with = [
-        'street'
-    ];
 
     public function entrance()
     {
-        return $this->hasMany('App\Models\Entrance');
+        return $this->hasMany(Entrance::class);
     }
 
     public function street()
     {
-        return $this->belongsTo('App\Models\Street');
+        return $this->belongsTo(Street::class);
     }
 
 }

@@ -15,7 +15,7 @@ class EntranceController extends Controller
      */
     public function index(): View
     {
-        return view('entrances.index', ['entrances' => Entrance::paginate(30)]);
+        return view('entrances.index', ['entrances' => Entrance::with('house', 'house.street', 'house.street.town')->paginate(30)]);
     }
 
 
